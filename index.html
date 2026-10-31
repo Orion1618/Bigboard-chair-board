@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Schedule Requests</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="board.css">
+</head>
+<body>
+
+<section class="lock" id="lock">
+  <h1>Schedule Requests</h1>
+  <div id="passlock" hidden>
+    <p>This board is private to the department. Enter the passphrase you were given. The passphrase is never saved. This browser keeps a key that cannot be read back, so the board reopens without it for up to 12 hours, until the passphrase changes.</p>
+    <form class="lockform" id="lockform">
+      <label for="pass">Passphrase</label>
+      <input id="pass" type="password" autocomplete="current-password" placeholder="the words, with spaces">
+      <button class="go" id="go" type="submit">Open board</button>
+      <div class="err" id="lockerr" role="alert"></div>
+    </form>
+  </div>
+  <div id="linklock" hidden>
+    <p id="linkmsg" role="alert">Open this board from the link Ryan sent you.</p>
+  </div>
+  <div class="err" id="loaderr" role="alert"></div>
+  <button class="go" id="retry" type="button" hidden>Try again</button>
+</section>
+
+<div id="app" hidden>
+<header>
+  <div>
+    <h1 class="title" id="title">Schedule Requests</h1>
+    <p class="sub"><span id="dept"></span><span class="fresh" id="fresh"></span></p>
+  </div>
+  <div class="stats">
+    <div><b id="st-open">0</b>in process</div>
+    <div><b id="st-wait">0</b>waiting on someone</div>
+    <div><b id="st-done">0</b>done this term</div>
+  </div>
+</header>
+<div class="filters" id="filters" role="group" aria-label="Filter by subject"></div>
+<main>
+  <section class="board" aria-label="In process">
+    <h2>In process <span id="n-open"></span></h2>
+    <div class="colhead" aria-hidden="true"><span>Ticket</span><span>Request</span><span class="steps4"><span>Received</span><span>In progress</span><span>Review</span><span>Done</span></span><span class="r">In stage</span></div>
+    <div id="openlist"></div>
+  </section>
+  <section class="board done" aria-label="Done this term">
+    <h2>Done this term <span id="n-done"></span></h2>
+    <div id="donelist"></div>
+  </section>
+  <p class="foot">A striped step means the request is paused, waiting on someone. Tap a request to see what's changing, the messages about it, and its history. Private notes and full email text are never published.</p>
+  <p class="foot" id="note"></p>
+</main>
+</div>
+<aside id="drawer" aria-label="Request details" aria-hidden="true"></aside>
+
+<script src="board.js"></script>
+</body>
+</html>
